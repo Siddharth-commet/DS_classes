@@ -7,10 +7,9 @@ int findMissingBinary(int arr[], int n) {
         int mid = (low + high) / 2;
         
         if (arr[mid] - arr[0] == mid) {
-            // Missing number is in the right half
+
             low = mid + 1;
         } else {
-            // Missing number is in the left half
             high = mid - 1;
         }
     }
