@@ -37,5 +37,4 @@ int main() {
         {cout << "Element found at index " <<result;}
 
     return 0;
-    
     }

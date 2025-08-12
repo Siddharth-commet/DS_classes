@@ -2,7 +2,7 @@
 using namespace std;
 
 bool isVowel(char ch) {
-    ch = (ch >= 'A' && ch <= 'Z') ? ch + 32 : ch; // convert to lowercase manually
+    ch = (ch >= 'A' && ch <= 'Z') ? ch + 32 : ch;
     return (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u');
 }
 
