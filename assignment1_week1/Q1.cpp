@@ -14,7 +14,6 @@ const int MAX = 100;
 int arr[MAX];
 int arrSize = 0;
 
-// Function to create array
 void createArray() {
     cout << "Enter number of elements: ";
     cin >> arrSize;
@@ -29,7 +28,6 @@ void createArray() {
     }
 }
 
-// Function to display array
 void displayArray() {
     if (arrSize == 0) {
         cout << "Array is empty." << endl;
@@ -42,7 +40,6 @@ void displayArray() {
     cout << endl;
 }
 
-// Function to insert element
 void insertElement() {
     if (arrSize >= MAX) {
         cout << "Array is full. Cannot insert." << endl;
@@ -65,7 +62,6 @@ void insertElement() {
     cout << "Element inserted successfully." << endl;
 }
 
-// Function to delete element
 void deleteElement() {
     if (arrSize == 0) {
         cout << "Array is empty. Cannot delete." << endl;
