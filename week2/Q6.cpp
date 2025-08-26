@@ -23,7 +23,6 @@ struct SparseMatrix {
     }
 };
 
-// (a) Transpose
 SparseMatrix transpose(SparseMatrix &A) {
     SparseMatrix res;
     res.rows = A.cols;
@@ -34,7 +33,6 @@ SparseMatrix transpose(SparseMatrix &A) {
     return res;
 }
 
-// (b) Addition of two sparse matrices
 SparseMatrix add(SparseMatrix &A, SparseMatrix &B) {
     if (A.rows != B.rows || A.cols != B.cols) {
         throw invalid_argument("Matrix dimensions do not match for addition");
@@ -64,7 +62,6 @@ SparseMatrix add(SparseMatrix &A, SparseMatrix &B) {
     return res;
 }
 
-// (c) Multiplication
 SparseMatrix multiply(SparseMatrix &A, SparseMatrix &B) {
     if (A.cols != B.rows) {
         throw invalid_argument("Matrix dimensions do not match for multiplication");
@@ -73,13 +70,11 @@ SparseMatrix multiply(SparseMatrix &A, SparseMatrix &B) {
     res.rows = A.rows;
     res.cols = B.cols;
 
-    // Convert B to map for fast access
     map<pair<int,int>, int> Bmap;
     for (auto &e : B.data) {
         Bmap[{e.row, e.col}] = e.val;
     }
 
-    // Multiply
     for (auto &a : A.data) {
         for (int j = 0; j < B.cols; j++) {
             auto it = Bmap.find({a.col, j});
@@ -89,7 +84,6 @@ SparseMatrix multiply(SparseMatrix &A, SparseMatrix &B) {
         }
     }
 
-    // Combine duplicate positions
     map<pair<int,int>, int> combine;
     for (auto &e : res.data) {
         combine[{e.row, e.col}] += e.val;
@@ -101,7 +95,6 @@ SparseMatrix multiply(SparseMatrix &A, SparseMatrix &B) {
     return res;
 }
 
-// ================== MAIN ==================
 int main() {
     SparseMatrix A, B;
     A.rows = 3; A.cols = 3;
@@ -112,7 +105,6 @@ int main() {
     A.addElement(0, 2, 2);
     A.addElement(1, 1, 3);
 
-    // Matrix B
     B.addElement(0, 1, 4);
     B.addElement(1, 1, 5);
     B.addElement(2, 2, 6);
@@ -120,15 +112,12 @@ int main() {
     cout << "Matrix A in triplet form:\n"; A.display();
     cout << "\nMatrix B in triplet form:\n"; B.display();
 
-    // Transpose
     SparseMatrix T = transpose(A);
     cout << "\nTranspose of A:\n"; T.display();
 
-    // Addition
     SparseMatrix Sum = add(A, B);
     cout << "\nA + B:\n"; Sum.display();
 
-    // Multiplication
     SparseMatrix Prod = multiply(A, B);
     cout <<"\nA * B:\n"; Prod.display();
 
