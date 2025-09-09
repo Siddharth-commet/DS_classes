@@ -1,70 +1,72 @@
-// Write a program that checks if an expression has balanced parentheses.
-
 #include <iostream>
+#include <string>
 using namespace std;
 
+#define MAX 100  
+
 class Stack {
-    public:
-    char arr[40];
+    char arr[MAX];
     int top;
 
-    Stack() {
-        top = -1;
-    }
+public:
+    Stack() { top = -1; }
 
-    void push(char ch) {
-        if (isFull()) {
-            cout << "Stack Overflow! Cannot push " << ch << "\n";
-            return;
+    bool isEmpty() { return top == -1; }
+
+    bool isFull() { return top == MAX - 1; }
+
+    void push(char c) {
+        if (!isFull()) {
+            arr[++top] = c;
         }
-        arr[++top] = ch;
     }
 
     char pop() {
-        if (isEmpty()) {
-            return '\0';
+        if (!isEmpty()) {
+            return arr[top--];
         }
-        return arr[top--];
+        return '\0'; 
     }
 
-    bool isEmpty() {
-        return top == -1;
-    }
-
-    bool isFull() {
-        return top == 39;
-    }
-
-    char peek(){
-        return arr[top];
+    char peek() {
+        if (!isEmpty()) return arr[top];
+        return '\0';
     }
 };
 
-int main(){
-    Stack A;
-    char curParren;
-    char arr[40];
-    char ch;
-    cout<<"Enter the expression: ";
-    for (int i = 0; i < 40; i++)
-    {
-        cin.get(ch);
-        if (ch == '\n')
-        {
-            break;
+bool isBalanced(const string &expr) {
+    Stack s;
+
+    for (char ch : expr) {
+        // Push opening brackets
+        if (ch == '(' || ch == '{' || ch == '[') {
+            s.push(ch);
         }
-        A.push(ch); 
+        // Check closing brackets
+        else if (ch == ')' || ch == '}' || ch == ']') {
+            if (s.isEmpty()) return false; // no opening bracket
+
+            char top = s.pop();
+            if ((ch == ')' && top != '(') ||
+                (ch == '}' && top != '{') ||
+                (ch == ']' && top != '[')) {
+                return false; // mismatch
+            }
+        }
     }
 
-    while (A.top>-1)
-    {
-        if(A.peek()=='}' || A.peek()==']' || A.peek()==')'){
-            curParren = 
-        }
-    }
-    
-    
-    
-    
+    return s.isEmpty(); // balanced if stack is empty
+}
+
+int main() {
+    string expr;
+    cout << "Enter an expression: ";
+    getline(cin, expr);
+
+    if (isBalanced(expr))
+        cout << "Balanced" << endl;
+    else
+        cout << "Not Balanced" << endl;
+
     return 0;
 }
