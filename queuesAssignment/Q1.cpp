@@ -32,10 +32,13 @@ public:
             cout << "Queue is Empty\n";
             return;
         }
-        if (front == rear) {
+        // Shift elements left by one
+        for (int i = 0; i < rear; i++) {
+            arr[i] = arr[i + 1];
+        }
+        rear--; // one element removed
+        if (rear < 0) { // queue became empty
             front = rear = -1;
-        } else {
-            front++;
         }
     }
     void peek() {

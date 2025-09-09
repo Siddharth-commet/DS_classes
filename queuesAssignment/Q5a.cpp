@@ -19,6 +19,7 @@ public:
         arr[rear] = x;
     }
 
+
     int dequeue() {
         if (isEmpty()) return -1;
         int x = arr[front];
