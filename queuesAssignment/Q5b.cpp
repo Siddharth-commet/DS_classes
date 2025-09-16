@@ -40,43 +40,35 @@ public:
     }
 };
 
-class StackTwoQueues {
-    Queue q1, q2;
+class StackOneQueue {
+    Queue q;
 public:
     void push(int x) {
-        q1.enqueue(x);
+        q.enqueue(x);
+        int sz = q.size();
+        // rotate to bring new element in front
+        for (int i = 0; i < sz - 1; i++) {
+            q.enqueue(q.dequeue());
+        }
     }
 
     int pop() {
-        if (q1.isEmpty()) {
+        if (q.isEmpty()) {
             cout << "Stack underflow\n";
             return -1;
         }
-
-        // move all except last
-        while (q1.size() > 1) {
-            q2.enqueue(q1.dequeue());
-        }
-
-        int popped = q1.dequeue();
-
-        // swap queues
-        Queue temp = q1;
-        q1 = q2;
-        q2 = temp;
-
-        return popped;
+        return q.dequeue();
     }
 };
 
 int main() {
-    StackTwoQueues st;
-    st.push(10);
-    st.push(20);
-    st.push(30);
+    StackOneQueue st;
+    st.push(100);
+    st.push(200);
+    st.push(300);
 
-    cout << st.pop() << "\n"; // 30
-    cout << st.pop() << "\n"; // 20
-    cout << st.pop() << "\n"; // 10
+    cout << st.pop() << "\n"; // 300
+    cout << st.pop() << "\n"; // 200
+    cout << st.pop() << "\n"; // 100
     cout << st.pop() << "\n"; // -1 (underflow)
 }
