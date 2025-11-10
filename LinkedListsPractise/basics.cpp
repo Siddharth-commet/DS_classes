@@ -1,4 +1,5 @@
-#include <iostream>
+#include<iostream>
+#include<list>
 using namespace std;
 
 class Node
@@ -181,28 +182,32 @@ public:
 
 int main()
 {
-    LinkedList MyList;
-    // cout<<head->val<<" "<<head->next<<endl;
-    MyList.insertAtEndUsingTail(1);
-    MyList.insertAtEndUsingTail(2);
-    MyList.display();
-    MyList.insertAtEndUsingTail(400);
-    MyList.display();
-    // MyList.insertAtPos(4, 500);
-    MyList.display();
-    MyList.deleteAtPos(3);
-    MyList.display();
-    MyList.insertAtEndUsingTail(4);
-    MyList.insertAtEndUsingTail(5);
-    MyList.insertAtEndUsingTail(6);
-    MyList.insertAtEndUsingTail(7);
-    MyList.insertAtEndUsingTail(8);
-    MyList.insertAtEndUsingTail(9);
-    // cout<<MyList.length;
-    MyList.display();
-    MyList.deleteAltEle();
-    cout << "\n"
-         << MyList.length << "\n";
-    MyList.display();
+    // LinkedList MyList;
+    // MyList.insertAtEndUsingTail(1);
+    // MyList.insertAtEndUsingTail(2);
+    // MyList.display();
+    // MyList.insertAtEndUsingTail(400);
+    // MyList.display();
+    // // MyList.insertAtPos(4, 500);
+    // MyList.display();
+    // MyList.deleteAtPos(3);
+    // MyList.display();
+    // MyList.insertAtEndUsingTail(4);
+    // MyList.insertAtEndUsingTail(5);
+    // MyList.insertAtEndUsingTail(6);
+    // MyList.insertAtEndUsingTail(7);
+    // MyList.insertAtEndUsingTail(8);
+    // MyList.insertAtEndUsingTail(9);
+    // MyList.display();
+    // MyList.deleteAltEle();
+    // cout << "\n"<< MyList.length << "\n";
+    // MyList.display();
+    LinkedList l1;
+    l1.insertAtEnd(2);
+    l1.insertAtHead(1);
+    l1.display();
+    l1.insertAtPos(3,3);
+    l1.display();
     return 0;
+
 }
